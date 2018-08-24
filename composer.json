@@ -1,5 +1,10 @@
 {
-    "name": "benedictayiko",
+    "name": "egimaben/sqlseeder",
+    "autoload":{
+        "psr-0" : {
+            "egimaben\\sqlseeder" : "src"
+        }
+    },
     "require": {
         "monolog/monolog": "1.0.*",
         "fzaninotto/faker": "^1.8"
