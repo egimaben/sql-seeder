@@ -214,4 +214,3 @@ $db = new DBSeeder();
 // echo $query;
 $db->refill();
 // // $str = "'hey'";
-// echo $str;
