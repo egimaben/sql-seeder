@@ -213,4 +213,3 @@ $db = new DBSeeder();
 // $query = $db->bulkInsert("s_invoices",array("name","age","height"),array(array("ben",28,55.6),array("egima",34,33.5)));
 // echo $query;
 $db->refill();
-// // $str = "'hey'";
