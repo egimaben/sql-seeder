@@ -1,12 +1,19 @@
 {
     "name": "egimaben/sqlseeder",
+    "description":"A simple seeder for sql databases",
     "autoload":{
-        "psr-0" : {
-            "egimaben\\sqlseeder" : "src"
+        "psr-4" : {
+            "egimaben\\sqlseeder\\" : "src/egimaben/sqlseeder"
         }
     },
     "require": {
-        "monolog/monolog": "1.0.*",
-        "fzaninotto/faker": "^1.8"
-    }
+        "fzaninotto/faker": "^1.8",
+        "php": "^5.3.3 || ^7.0"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/egimaben/sql-seeder"
+        }
+    ]
 }

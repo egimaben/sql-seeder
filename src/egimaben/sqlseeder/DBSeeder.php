@@ -8,9 +8,7 @@
 namespace egimaben\sqlseeder; 
 
 require_once "Config.php";
-require_once "db/MySQL.php";
-require_once "db/DatabaseUtilities.php";
-require_once '../vendor/fzaninotto/faker/src/autoload.php';
+ require_once __DIR__.'/../../../vendor/autoload.php';
 
 class DBSeeder{
     private $tableArr;
@@ -18,7 +16,7 @@ class DBSeeder{
     private $faker;
     function __construct($tableArr=null) {
         $this->tableArr = $tableArr;
-        $this->faker = Faker\Factory::create();
+        $this->faker = \Faker\Factory::create();
         $this->conn = mysqli_connect(
             Config::DB_HOST, Config::DB_USER, Config::DB_PASSWORD,Config::DB_NAME
     );
