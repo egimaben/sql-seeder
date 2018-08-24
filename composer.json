@@ -4,7 +4,7 @@
     "version":"1.0.0",
     "autoload":{
         "psr-4" : {
-            "egimaben\\sqlseeder\\" : "src/egimaben/sqlseeder"
+            "egimaben\\sqlseeder\\" : "src"
         }
     },
     "require": {

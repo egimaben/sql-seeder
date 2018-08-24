@@ -6,9 +6,8 @@
  * Time: 22:34
  */
 namespace egimaben\sqlseeder; 
-
 require_once "Config.php";
- require_once __DIR__.'/../../../vendor/autoload.php';
+  require_once __DIR__.'/../vendor/autoload.php';
 
 class DBSeeder{
     private $tableArr;
