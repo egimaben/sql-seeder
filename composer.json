@@ -17,7 +17,7 @@
         }
     ],
     "bin": [
-        "run_seeder"
+        "seed"
     ],
     "require": {
         "php": "~5.6|~7.0",
