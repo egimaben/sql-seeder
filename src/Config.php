@@ -5,7 +5,7 @@
  * Date: 22.08.18
  * Time: 22:34
  */
-namespace egimaben\sqlseeder; 
+namespace egimaben\sql_seeder; 
 
 class Config {
     const DB_HOST = "127.0.0.1";

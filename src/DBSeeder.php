@@ -5,8 +5,9 @@
  * Date: 22.08.18
  * Time: 22:34
  */
-namespace egimaben\sqlseeder; 
+namespace egimaben\sql_seeder; 
 require_once "Config.php";
+// use Faker\Factory as Factory;
 require_once __DIR__.'/../vendor/autoload.php';
 
 class DBSeeder{
@@ -39,7 +40,7 @@ class DBSeeder{
         }
 
     }
-    private function generateColumnValue($columnName,$mysqlType){
+    public function generateColumnValue($columnName,$mysqlType){
         $fakeValue = null;
         $mysqlType = strtolower($mysqlType);
         $mysqlType = preg_replace('/signed|unsigned/','',$mysqlType);
@@ -79,7 +80,7 @@ class DBSeeder{
         
         
     }
-    private static function quoteString($str){
+    public static function quoteString($str){
         return "'".$str."'";
     }
     private static function truncateTables($conn,$tables){
@@ -104,7 +105,7 @@ class DBSeeder{
             echo "Failed to set FK checks, may risk corrupting database\n";
         }
     }
-    private static function unsetFKChecks($conn){
+    public static function unsetFKChecks($conn){
         if(mysqli_query($conn,"SET FOREIGN_KEY_CHECKS=0")) {
             echo "successfully unset FK checks\n";
           } 
@@ -112,13 +113,13 @@ class DBSeeder{
             echo "Failed to unset FK checks, DB seeding may not work as expected\n";
         }
     }
-    private static function isNumberColumn($columnType){
+    public static function isNumberColumn($columnType){
         return preg_match('/int|tinyint|double|float|decimal|bigint|smallint|mediumint|year/',$columnType);
     }
     /**
      * Generate data according to column type
      */
-    private function generateColumnValueFromType($mysqlType){
+    public function generateColumnValueFromType($mysqlType){
         $columnLength = $this->extractColumnLength($mysqlType);
         
         if(is_numeric($columnLength) && DBSeeder::isNumberColumn($mysqlType) && $columnLength>=10){
@@ -127,7 +128,7 @@ class DBSeeder{
         if(strpos($mysqlType,"(")){
             $mysqlType = substr($mysqlType,0,strpos($mysqlType,"("));
         }
-        $fakeValue;        
+        $fakeValue = "";        
         
         switch($mysqlType){
             case 'int': case 'bigint': case 'mediumint':case 'smallint':$fakeValue = $this->faker->unique()->randomNumber($nbDigits = $columnLength);break;
@@ -145,10 +146,10 @@ class DBSeeder{
         }
         return $fakeValue;
     }
-    private function extractColumnLength($mysqlColumnLenDescriptor){
+    public function extractColumnLength($mysqlColumnLenDescriptor){
         return preg_replace("/[^0-9]/","",substr($mysqlColumnLenDescriptor,strpos($mysqlColumnLenDescriptor,"("),strlen($mysqlColumnLenDescriptor)-strpos($mysqlColumnLenDescriptor,",")));
     }
-    private function extractDecimalPlaces($mysqlDoubleColumnLenDescriptor){
+    public function extractDecimalPlaces($mysqlDoubleColumnLenDescriptor){
         $decimalPlaces =preg_replace("/^(.*,)/",'',$mysqlDoubleColumnLenDescriptor);
         $decimalPlaces = preg_replace("/[)]/",'',$decimalPlaces);
         return $decimalPlaces;
@@ -205,11 +206,11 @@ class DBSeeder{
     }
 
 
-$db = new DBSeeder();
+// $db = new DBSeeder();
 // $result = $db->getDatabaseTables();
 // $db->getTableColumns("posts");
 // var_dump($result);
 // $result = $db->test();
 // $query = $db->bulkInsert("s_invoices",array("name","age","height"),array(array("ben",28,55.6),array("egima",34,33.5)));
 // echo $query;
-$db->refill();
+// $db->refill();
