@@ -1,5 +1,6 @@
+#!/usr/bin/env php
 <?php
 namespace egimaben\sql_seeder;
-require_once('DBSeeder.php');
+require_once('src/DBSeeder.php');
 $db = new DBSeeder();
 $db->refill();
