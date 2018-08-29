@@ -7,7 +7,6 @@
  */
 namespace egimaben\sql_seeder; 
 require_once "Config.php";
-// use Faker\Factory as Factory;
 require_once __DIR__.'/../vendor/autoload.php';
 
 class DBSeeder{
