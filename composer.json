@@ -4,7 +4,8 @@
     "description": "An SQL seeder for php",
     "keywords": [
         "egimaben",
-        "sql_seeder"
+        "sql_seeder",
+        "db_seeder"
     ],
     "homepage": "https://github.com/egimaben/sql_seeder",
     "license": "MIT",
@@ -45,7 +46,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0-dev"
+            "dev-master": "1.1-dev"
         }
     },
     "config": {
