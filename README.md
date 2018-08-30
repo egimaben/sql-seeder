@@ -58,6 +58,7 @@ Alternatively
 ``` bash
 ./vendor/bin/seed $host $user $password $database '[$numRecords]' '[[table1,table2,table3...]]
 ```
+The last 2 commandline arguments are optional, if `numRecords` is not provided, `sql_seeder` will default to 50 for number of records to insert when seeding each table and if an array of tables is not provided, `sql_seeder` will default to seeding all tables in the provided database.
 
 ## Change log
 
