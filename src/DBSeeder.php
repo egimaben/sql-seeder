@@ -13,11 +13,16 @@ class DBSeeder{
     private $tableArr;
     private $conn;
     private $faker;
-    function __construct($tableArr=null) {
+    private $rows = null;
+    function __construct($host=null,$user=null,$pass=null,$db=null,$rows=null,$tableArr=null) {
         $this->tableArr = $tableArr;
         $this->faker = \Faker\Factory::create();
+        $this->rows = $rows;
         $this->conn = mysqli_connect(
-            Config::DB_HOST, Config::DB_USER, Config::DB_PASSWORD,Config::DB_NAME
+            $host==null?Config::DB_HOST:$host, 
+            $user==null?Config::DB_USER:$user, 
+            $pass==null?Config::DB_PASSWORD:$pass,
+            $db==null?Config::DB_NAME:$db
     );
     }
     public function refill(){
@@ -26,7 +31,8 @@ class DBSeeder{
         foreach($tables as $table){
             $columnNameTypeMap = $this->getTableColumns($table);
             $recordsArray = array();
-            for($i=0;$i<Config::NUM_RECORDS;$i++){
+            $records = $this->rows==null?Config::NUM_RECORDS:$this->rows;
+            for($i=0;$i<$records;$i++){
                 $record = array();
                 foreach($columnNameTypeMap as $columnName=>$type){
                     $record[] = $this->generateColumnValue($columnName,$type);
