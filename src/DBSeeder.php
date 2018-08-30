@@ -119,13 +119,13 @@ class DBSeeder{
 		}
 	}
 	public static function isNumberColumn($columnType){
-		return preg_match('/int|tinyint|double|float|decimal|bigint|smallint|mediumint|year/',$columnType);
+		return preg_match('/int|tinyint|double|float|decimal|bigint|smallint|mediumint|year/',strtolower($columnType))===1;
 	}
 	/**
 	 * Generate data according to column type
 	 */
 	public function generateColumnValueFromType($mysqlType){
-		$columnLength = $this->extractColumnLength($mysqlType);
+		$columnLength = DBSeeder::extractColumnLength($mysqlType);
 
 		if(is_numeric($columnLength) && DBSeeder::isNumberColumn($mysqlType) && $columnLength>=10){
 			$columnLength =9 ;
@@ -151,7 +151,7 @@ class DBSeeder{
 		}
 		return $fakeValue;
 	}
-	public function extractColumnLength($mysqlColumnLenDescriptor){
+	public static function extractColumnLength($mysqlColumnLenDescriptor){
 		return preg_replace("/[^0-9]/","",substr($mysqlColumnLenDescriptor,strpos($mysqlColumnLenDescriptor,"("),strlen($mysqlColumnLenDescriptor)-strpos($mysqlColumnLenDescriptor,",")));
 	}
 	public function extractDecimalPlaces($mysqlDoubleColumnLenDescriptor){
