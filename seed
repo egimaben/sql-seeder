@@ -2,7 +2,6 @@
 <?php
 namespace egimaben\sql_seeder;
 require_once('src/bootstrap.php');
-
 Command::main();
 
 
