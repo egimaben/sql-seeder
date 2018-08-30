@@ -24,7 +24,7 @@ class DBSeederTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue(DBSeeder::isNumberColumn('float(3,2)'));
         $this->assertTrue(DBSeeder::isNumberColumn('double(3,2)'));
         $this->assertTrue(DBSeeder::isNumberColumn('decimal(3,2)'));
-        $this->assertTrue(DBSeeder::isNumberColumn('year(3)'));
+        $this->assertTrue(DBSeeder::isNumberColumn('year'));
         //when number column but in upper case
         $this->assertTrue(DBSeeder::isNumberColumn('TINYINT(3)'));
         $this->assertTrue(DBSeeder::isNumberColumn('SMALLINT(3)'));
@@ -38,6 +38,22 @@ class DBSeederTest extends \PHPUnit\Framework\TestCase
         
         
     }
+    public function testColumnLengthExtractor(){
+        $this->assertEquals(DBSeeder::extractColumnLength('tinyint(3)'),3);
+        $this->assertEquals(DBSeeder::extractColumnLength('smallint(6)'),6);
+        $this->assertEquals(DBSeeder::extractColumnLength('mediumint(8)'),8);
+        $this->assertEquals(DBSeeder::extractColumnLength('int(9)'),9);
+        $this->assertEquals(DBSeeder::extractColumnLength('bigint(11)'),11);
+        $this->assertEquals(DBSeeder::extractColumnLength('float(6,2)'),6);
+        $this->assertEquals(DBSeeder::extractColumnLength('double(5,3)'),5);
+        $this->assertEquals(DBSeeder::extractColumnLength('decimal(6,4)'),6);
+        $this->assertEquals(DBSeeder::extractColumnLength('varchar(25)'),25);
+        $this->assertEquals(DBSeeder::extractColumnLength('char(9)'),9);
+        //negative tests to follow
+
+        
+    }
+
     public function testNumberColumnFalse(){
        //when not number column but lower case
         $this->assertFalse(DBSeeder::isNumberColumn('date()'));
@@ -72,18 +88,6 @@ class DBSeederTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse(DBSeeder::isNumberColumn('ENUM'));
         $this->assertFalse(DBSeeder::isNumberColumn('SET'));
     }
-    // public function testValueGenerator(){
-
-    // }
-    public function testColumnLengthExtractor(){
-        $this->assertEquals(DBSeeder::extractColumnLength('tinyint(3)'),3);
-        $this->assertEquals(DBSeeder::extractColumnLength('smallint(6)'),6);
-        $this->assertEquals(DBSeeder::extractColumnLength('mediumint(8)'),8);
-        $this->assertEquals(DBSeeder::extractColumnLength('int(9)'),9);
-        $this->assertEquals(DBSeeder::extractColumnLength('bigint(11)'),11);
-        $this->assertEquals(DBSeeder::extractColumnLength('float(6,2)'),6);
-        $this->assertEquals(DBSeeder::extractColumnLength('double(5,3)'),5);
-        $this->assertEquals(DBSeeder::extractColumnLength('smallint(6)'),6);
-        
-    }
+    
+   
 }
