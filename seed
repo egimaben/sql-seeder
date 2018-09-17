@@ -1,6 +1,8 @@
 #!/usr/bin/env php
 <?php
 namespace egimaben\sql_seeder;
+
+echo "current dir::".__DIR__;
 require_once('src/bootstrap.php');
 Command::main();
 
